@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        /* Basic styling for the cart items */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        /* Styling for the + and - buttons */
+        .quantity-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-button {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* Styling for the "Add to Cart" button */
+        #addToCartButton {
+            margin-top: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Shopping Cart</h2>
+    <!-- Cart items will be dynamically added here -->
+    <div id="cartItems">
+        <!-- Example cart item (you can add more) -->
+        <div class="cart-item">
+            <img src="img/boy.png" alt="Item 1">
+            <span>Item Name</span>
+            <div class="quantity-buttons">
+                <div class="quantity-button" onclick="decrementQuantity(this)">-</div>
+                <span class="quantity">1</span>
+                <div class="quantity-button" onclick="incrementQuantity(this)">+</div>
+            </div>
+        </div>
+    </div>
+    <!-- Button to add items to the cart -->
+    <button id="addToCartButton" onclick="addToCart()">Add to Cart</button>
+
+    <script>
+        // Function to increment the quantity
+        function incrementQuantity(button) {
+            var quantityElement = button.parentElement.querySelector('.quantity');
+            var currentQuantity = parseInt(quantityElement.textContent);
+            quantityElement.textContent = currentQuantity + 1;
+        }
+
+        // Function to decrement the quantity
+        function decrementQuantity(button) {
+            var quantityElement = button.parentElement.querySelector('.quantity');
+            var currentQuantity = parseInt(quantityElement.textContent);
+            if (currentQuantity > 0) {
+                quantityElement.textContent = currentQuantity - 1;
+            }
+        }
+
+        // Function to add items to the cart
+        function addToCart() {
+            var cartItems = document.getElementById('cartItems');
+            var item = document.createElement('div');
+            item.className = 'cart-item';
+            item.innerHTML = `
+                <img src="item2.jpg" alt="Item 2">
+                <span>Item Name 2</span>
+                <div class="quantity-buttons">
+                    <div class="quantity-button" onclick="decrementQuantity(this)">-</div>
+                    <span class="quantity">1</span>
+                    <div class="quantity-button" onclick="incrementQuantity(this)">+</div>
+                </div>
+            `;
+            cartItems.appendChild(item);
+        }
+    </script>
+</body>
+</html>
